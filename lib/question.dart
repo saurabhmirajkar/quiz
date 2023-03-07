@@ -8,7 +8,7 @@ class Question extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.amber,
+      // color: Colors.amber,
       width: double.infinity,
       margin: EdgeInsets.all(10.0),
       child: Text(
