@@ -37,7 +37,7 @@ class _MyAppState extends State<_MyApp> {
   }
 
   Widget build(BuildContext context) {
-    List<Map<String, Object>> _questions = getQuestions();
+    final _questions = getQuestions();
 
     return MaterialApp(
       home: Scaffold(
