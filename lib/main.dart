@@ -10,21 +10,35 @@ class _MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<_MyApp> {
-  var _questions = [
-    'What\'s your favorite color?',
-    'What\'s your favorite animal?'
-  ];
-
   var _questionIndex = 0;
 
-  void answerQuestion() {
+  void _answerQuestion() {
     print('Answer good');
     setState(() {
       _questionIndex += 1;
     });
   }
 
+  List<Map<String, Object>> getQuestions() {
+    return [
+      {
+        'questionText': 'What\'s your favorite color?',
+        'answers': ['Black', 'Navy Blue', 'Red', 'White'],
+      },
+      {
+        'questionText': 'What\'s your favorite animal?',
+        'answers': ['Lion', 'Wolf', 'Horse', 'Monkey'],
+      },
+      {
+        'questionText': 'Who is your favorite instructor?',
+        'answers': ['Max', 'Angela', 'Colt', 'Flutterly'],
+      },
+    ];
+  }
+
   Widget build(BuildContext context) {
+    List<Map<String, Object>> _questions = getQuestions();
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -33,10 +47,11 @@ class _MyAppState extends State<_MyApp> {
         ),
         body: Column(
           children: [
-            Question(_questions[_questionIndex]),
-            Answer('Answer 1', answerQuestion),
-            Answer('Answer 2', answerQuestion),
-            Answer('Answer 3', answerQuestion),
+            Question(_questions[_questionIndex]['questionText']),
+            ...(_questions[_questionIndex]['answers'] as List<String>)
+                .map((answer) {
+              return Answer(answer, _answerQuestion);
+            }).toList()
           ],
         ),
       ),
