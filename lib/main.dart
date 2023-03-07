@@ -22,6 +22,13 @@ class _MyAppState extends State<_MyApp> {
     });
   }
 
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
   final List<QuestionModel> _questions = [
     QuestionModel(
       questionText: 'What\'s your favorite color?',
@@ -67,6 +74,7 @@ class _MyAppState extends State<_MyApp> {
               )
             : Result(
                 resultScore: _totalScore,
+                resetHandler: _resetQuiz,
               ),
       ),
     );
